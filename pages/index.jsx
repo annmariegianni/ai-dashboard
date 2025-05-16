@@ -9,9 +9,12 @@ export default function Home() {
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const GPT_API = "https://0e40fa4b-1125-4586-8d07-51e603b8de2e-00-kpr319x2y9jg.riker.replit.dev/bezos-chat/";
+  const ACCESS_KEY = "yourpassword"; // 🔐 Replace this with your real key
+
   const ask = async () => {
     setLoading(true);
-    const res = await fetch('https://0e40fa4b-1125-4586-8d07-51e603b8de2e-00-kpr319x2y9jg.riker.replit.dev/bezos-chat/', {
+    const res = await fetch(GPT_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message })
@@ -32,7 +35,7 @@ export default function Home() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="mt-4 bg-black text-white px-4 py-2 rounded" onClick={() => setAuthed(password === process.env.NEXT_PUBLIC_ACCESS_KEY)}>
+        <button className="mt-4 bg-black text-white px-4 py-2 rounded" onClick={() => setAuthed(password === ACCESS_KEY)}>
           Unlock
         </button>
       </main>
@@ -56,3 +59,4 @@ export default function Home() {
     </main>
   );
 }
+
